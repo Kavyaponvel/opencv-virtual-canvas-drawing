@@ -8,8 +8,9 @@ cap = cv2.VideoCapture(0)
 canvas = None
 
 # Define color range for detection (example: blue object)
-lower_color = np.array([100, 150, 0])
-upper_color = np.array([140, 255, 255])
+lower_color = np.array([20, 100, 100])
+upper_color = np.array([30, 255, 255])
+
 
 # Previous point (for drawing lines)
 prev_x, prev_y = None, None
@@ -48,11 +49,13 @@ while True:
             center_x, center_y = x + w // 2, y + h // 2
 
             # Draw a circle on the frame to show tracking
-            cv2.circle(frame, (center_x, center_y), 10, (0, 255, 0), -1)
+            cv2.circle(frame, (center_x, center_y), 10, (0, 255, 255), -1)
+
 
             # Draw line on canvas
             if prev_x is not None and prev_y is not None:
-                cv2.line(canvas, (prev_x, prev_y), (center_x, center_y), (255, 0, 0), 5)
+                cv2.line(canvas, (prev_x, prev_y), (center_x, center_y), (0, 255, 255), 5)
+
 
             prev_x, prev_y = center_x, center_y
         else:
